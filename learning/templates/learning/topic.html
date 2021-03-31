@@ -1,0 +1,25 @@
+{% extends "learning/base.html" %}
+
+{% block content %}
+
+    <p>主题：{{ topic }}</p>
+
+    <p>帖子：</p>
+    <p>
+        <a href="{% url 'learning:new_entry' topic.id %}">新建帖子</a>
+    </p>
+    <ul>
+        {% for entry in entries %}
+            <li>
+            <p>
+                {{ entry.date_added|date:'M d,Y H:i' }}
+                <a href="{% url 'learning:edit_entry' entry.id %}">编辑</a>
+            </p>
+            <p>{{ entry.text|linebreaks }}</p>
+            </li>
+        {% empty %}
+            <li>There are no entries for this topic yet</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+<p>
+    <a href="{% url 'learning:index'  %}">Love in AHU</a>-
+    <a href="{% url 'learning:topics' %}">主题</a>-
+    {% if user.is_authenticated %}
+        你好，{{ user.username }}.
+        <a href="{% url 'users:logout' %}">退出</a>
+    {% else %}
+        <a href="{% url 'users:register'%}">注册</a>
+        <a href="{% url 'users:login' %}">登录</a>
+    {% endif %}
+</p>
+
+{% block content %}{% endblock content %}
